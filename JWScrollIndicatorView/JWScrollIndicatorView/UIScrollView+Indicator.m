@@ -12,7 +12,7 @@
 @interface JWSlider ()
 {
     CGPoint _startCenter;
-    UIButton *_sliderIcon;
+   // UIButton *_sliderIcon;
 }
 @end
 
@@ -24,11 +24,13 @@
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         [self addGestureRecognizer:pan];
         
-        self.backgroundColor=[UIColor blackColor];
+        //self.backgroundColor=[UIColor blackColor];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         
-        _sliderIcon = [UIButton  buttonWithType:UIButtonTypeCustom];
+        self.sliderIcon = [UIButton  buttonWithType:UIButtonTypeSystem];
+        _sliderIcon.backgroundColor=[UIColor  redColor];
+        [_sliderIcon setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _sliderIcon.frame=self.bounds;
         [self addSubview:_sliderIcon];
     }
@@ -61,19 +63,19 @@
 {
     _status = status;
     
-//    switch (status) {
-//        case JWSliderStatusTop:
-//            _sliderIcon.backgroundColor = [UIColor  redColor];
-//            break;
-//        case JWSliderStatusCenter:
-//            _sliderIcon.backgroundColor = [UIColor  blueColor];
-//            break;
-//        case JWSliderStatusBottom:
-//           _sliderIcon.backgroundColor = [UIColor  blackColor];
-//            break;
-//        default:
-//            break;
-//    }
+    switch (status) {
+        case JWSliderStatusTop:
+            _sliderIcon.backgroundColor = [UIColor  redColor];
+            break;
+        case JWSliderStatusCenter:
+            _sliderIcon.backgroundColor = [UIColor  redColor];
+            break;
+        case JWSliderStatusBottom:
+           _sliderIcon.backgroundColor = [UIColor  redColor];
+            break;
+        default:
+            break;
+    }
 }
 
 @end
@@ -129,6 +131,12 @@
         
         _slider.center = CGPointMake(kILSDefaultSliderSize * 0.5, centerY);
     }
+    
+    
+    
+    
+    
+    
 //  NSLog(@"_________%f________%f",_slider.center.x,_slider.center.y);
 //    if (_scrollView.contentOffset.y > _scrollView.contentSize.height - _scrollView.frame.size.height) {
 //        [self infoPanelDidScroll:_scrollView atPoint:CGPointMake(_slider.center.x,_scrollView.contentSize.height-1)];

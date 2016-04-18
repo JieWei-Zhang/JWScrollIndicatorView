@@ -42,7 +42,12 @@
 //       // NSLog(@"_________%f________%f",indicator.center.x,indicator.center.y);
 //    }
     
-    scrollView.contentSize.height-[UIScreen mainScreen].bounds.size.height-20;
+    
+    CGRect f = [self.tableView convertRect:scrollView.indicator.slider.frame fromView:self.tableView.indicator];
+   //  NSLog(@"_________%f________%f",f.origin.x+25/2,f.origin.y+25/2);
+    
+   [self infoPanelDidScroll:scrollView atPoint:CGPointMake(f.origin.x+40/2,f.origin.y+40/2)];
+  //  scrollView.contentSize.height-[UIScreen mainScreen].bounds.size.height;
     
   //  NSLog(@"_____%f_____%d____%f",scrollView.contentOffset.y,44*50,[UIScreen mainScreen].bounds.size.height);
     
@@ -59,6 +64,8 @@
     
     NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];
     NSLog(@"_________%ld",(long)indexPath.row);
+    
+    [self.tableView.indicator.slider.sliderIcon  setTitle:[NSString  stringWithFormat:@"%ld",(long)indexPath.row] forState:UIControlStateNormal];
 }
 //-(void)infoPanelDidScroll:(UIScrollView *)scrollView atPoint:(CGPoint)point {
 //    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];
@@ -70,7 +77,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 50;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

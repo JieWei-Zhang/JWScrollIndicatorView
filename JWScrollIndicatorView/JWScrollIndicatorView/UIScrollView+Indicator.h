@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-const static NSInteger kILSDefaultSliderSize = 25;
+const static NSInteger kILSDefaultSliderSize = 40;
 const static NSInteger kILSDefaultSliderMargin = 20;
 
 typedef enum {
@@ -22,6 +22,8 @@ typedef enum {
 @interface JWSlider : UIControl
 
 @property (nonatomic, assign) JWSliderStatus status;
+@property (nonatomic, strong) UIButton* sliderIcon;
+
 
 @end
 
